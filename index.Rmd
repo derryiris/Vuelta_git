@@ -1,0 +1,29 @@
+---
+title: "Vuelta 2025 Competition"
+
+image: Vuelta_a_España_2025_map.svg.png
+
+output: html_document
+site: distill::distill_website
+---
+
+<style type="text/css">
+h1.title {
+  font-size: 24px; /* Adjust the size as desired */
+  color: DarkRed; /* You can also change the color */
+  text-align: center;
+}
+</style>
+
+$~$
+
+$~$
+
+
+```{r Insert Logo Figurea , echo=FALSE, fig.align='center', out.width="600px"}
+
+knitr::include_graphics("Vuelta_a_España_2025_map.svg.png")
+
+```
+
+

@@ -1,0 +1,58 @@
+---
+title: "Rules"
+fontsize: 11pt
+output:
+  html_document:
+    df_print: paged
+  word_document: default
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+fontfamily: mathpazo
+classoption: landscape
+header-includes:
+- \newcommand{\bcenter}{\begin{center}}
+- \newcommand{\ecenter}{\end{center}}
+- \pagenumbering{gobble}
+---
+
+
+
+<hr style="height:1px;border:none;color:#333;background-color:#333;">
+
+
+1. You may choose no more than one rider from Pot A, and no more than one rider from Pot B. You can pick as many riders as you wish that are not in A or B.
+
+2. If two contestants submit teams with identical riders the contestant to submit last of the two will be asked to substitute one rider (to avoid identical teams). The contestant can chose any alternative rider provided: 1) the team of 8 maintains no more than 1 rider from each of Pot A & Pot B; 2) the team is different from all other submissions by at least 1 rider.
+
+3. If after Stage 1 a contestant discovers that one or more of their riders did not start due to substitutions by the ProTeams they will have a single chance to make replacements. This must be completed before the start of Stage 2 and must comply with the constraints set out in 2) above. In addition, any added rider(s) must not have finished higher then the contestants riders 1 / 2 / 3 in stage 1 - i.e. if contestant A has only 7 riders after Stage 1 because of a DNS and their top 3 riders finish in positions 5, 11 & 19 they may select a replacement rider but only one out of the field that finished below 19th place on Stage 1.
+
+4. Positions on the stage will be decided by ranking of combined times for each team with the lowest combined time winning. Combined time for each team is calculated as the sum of the times for the top 3 riders from the team (no Bonuses or Penalties). In the event of tied times the tiebreakers will be the lowest rank of the top 3 riders, followed by the lowest rank of all 8 riders.
+
+<hr style="height:1px;border:none;color:#333;background-color:#333;">
+
+Pot A
+
+ POGAČAR Tadej,
+ PEDERSEN Mads,
+ VAN DER POEL Mathieu,
+ VAN AERT Wout,
+ ROGLIČ Primož,
+ DEL TORO Isaac,
+ EVENEPOEL Remco,
+ VINGEGAARD Jonas,
+ ONLEY Oscar,
+ O'CONNOR Ben,
+
+Pot B
+
+ LIPOWITZ Florian,
+ MAS Enric,
+ ALMEIDA João,
+ HIRSCHI Marc,
+ MILAN Jonathan,
+ CICCONE Giulio,
+ CARAPAZ Richard,
+ VAUQUELIN Kévin,
+ GROVES Kaden,
+ HEALY Ben,
