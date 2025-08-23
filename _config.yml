@@ -13,19 +13,16 @@ navbar:
       href: 
       menu:
         - text: "Stage 1"
-          href: stage-1_2025-08-15.html
-        - text: "Stage 2"
-          href: stage-2_2025-08-15.html
-        - text: "Stage 3"
-          href: stage-3_2025-08-15.html
-        - text: "Stage 4"
-          href: stage-4_2025-08-15.html  
-        - text: "Stage 5"
-          href: stage-5_2025-08-15.html 
+          href: stage-1_2025.html
+    - text: "Teams"
+      href: Teams.html
     - text: "Rules"
       href: Rules.html
           
     - icon: logo.png
       href: https://github.com/rstudio/distill
-output: distill::distill_article
+output:
+distill::distill_article:
+  css: styles.css
+
 ---
