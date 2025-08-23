@@ -1,0 +1,42 @@
+---
+title: "Teams"
+fontsize: 11pt
+output:
+  html_document:
+    df_print: paged
+  word_document: default
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+fontfamily: mathpazo
+classoption: landscape
+header-includes:
+- \newcommand{\bcenter}{\begin{center}}
+- \newcommand{\ecenter}{\end{center}}
+- \pagenumbering{gobble}
+---
+
+
+
+<hr style="height:1px;border:none;color:#333;background-color:#333;">
+
+
+```{r Insert Logo Figurea , echo=FALSE, fig.align='center', out.width="1000px"}
+
+knitr::include_graphics("/Users/jonathanderry/Documents/Home/Cycling/Vuelta_2025/website2/Teams.png")
+
+```
+
+$~$
+
+$~$
+
+$~$
+
+<center>    <p style="font-size: 20pt;">**RIDER OVERLAPS**</center></p>
+
+```{r Insert Logo Figureb , echo=FALSE, fig.align='center', out.width="1000px"}
+
+knitr::include_graphics("/Users/jonathanderry/Documents/Home/Cycling/Vuelta_2025/website2/Teams_2.png")
+
+```
