@@ -14,7 +14,7 @@ navbar:
       menu:
         - text: "Stage 1"
           href: stage-1.html
-        - text: "Stage 1"
+        - text: "Stage 2"
           href: stage-2.html
     - text: "Teams"
       href: Teams.html
