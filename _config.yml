@@ -13,7 +13,7 @@ navbar:
       href: 
       menu:
         - text: "Stage 1"
-          href: stage-1_2025.html
+          href: stage-1.html
     - text: "Teams"
       href: Teams.html
     - text: "Rules"
