@@ -26,6 +26,8 @@ navbar:
           href: stage-6.html
         - text: "Stage 7"
           href: stage-7.html
+        - text: "Stage 8"
+          href: stage-8.html
     - text: "Teams"
       href: Teams.html
     - text: "Rules"
