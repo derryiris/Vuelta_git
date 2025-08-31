@@ -1,0 +1,11 @@
+ /* styles.css */
+
+.distill-site-navbar{ 
+  --title-size:       18px;    
+  --text-color:       white; /* edited */
+  --text-size:        15px;
+  --hover-color:      #dd424c; /* edited */
+  --bkgd-color:  #B60000;
+}
+
+
