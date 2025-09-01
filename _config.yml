@@ -9,13 +9,6 @@ navbar:
     - text: "Route"
       href: https://www.lavuelta.es/en/overall-route
   left:
-    - text: "Standings"
-      href: 
-      menu:
-        - text: "Overall"
-          href: Current_overall.html
-        - text: "Points"
-          href: Current_points.html
     - text: "Results"
       href: 
       menu:
@@ -37,6 +30,13 @@ navbar:
           href: stage-8.html
         - text: "Stage 9"
           href: stage-9.html
+    - text: "Standings"
+      href: 
+      menu:
+        - text: "Overall"
+          href: Current_overall.html
+        - text: "Points"
+          href: Current_points.html
     - text: "Teams"
       href: Teams.html
     - text: "Rules"
