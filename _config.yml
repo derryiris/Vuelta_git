@@ -9,7 +9,7 @@ navbar:
     - text: "Route"
       href: https://www.lavuelta.es/en/overall-route
   left:
-   - text: "Standings"
+    - text: "Standings"
       href: 
       menu:
         - text: "Overall"
