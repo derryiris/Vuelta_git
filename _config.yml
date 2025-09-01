@@ -30,13 +30,10 @@ navbar:
           href: stage-8.html
         - text: "Stage 9"
           href: stage-9.html
-    - text: "Standings"
-      href: 
-      menu:
-        - text: "Overall"
-          href: Current_overall.html
-        - text: "Points"
-          href: Current_points.html
+    - text: "Overall Standings"
+      href: Current_overall.html
+    - text: "Points Standings"  
+      href: Current_points.html
     - text: "Teams"
       href: Teams.html
     - text: "Rules"
