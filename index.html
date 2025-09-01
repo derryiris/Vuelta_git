@@ -1015,8 +1015,17 @@ Results
 <a href="stage-9.html">Stage 9</a>
 </div>
 </div>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Standings
+ 
+<span class="down-arrow">▾</span>
+</button>
+<div class="nav-dropdown-content">
 <a href="Current_overall.html">Overall Standings</a>
 <a href="Current_points.html">Points Standings</a>
+</div>
+</div>
 <a href="Teams.html">Teams</a>
 <a href="Rules.html">Rules</a>
 <a href="https://github.com/rstudio/distill">
@@ -1082,11 +1091,20 @@ Results
     </li>
   </ul>
 </li>
-<li>
-  <a href="Current_overall.html">Overall Standings</a>
-</li>
-<li>
-  <a href="Current_points.html">Points Standings</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Standings
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Current_overall.html">Overall Standings</a>
+    </li>
+    <li>
+      <a href="Current_points.html">Points Standings</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="Teams.html">Teams</a>
