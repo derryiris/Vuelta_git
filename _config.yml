@@ -13,9 +13,9 @@ navbar:
       href: 
       menu:
         - text: "Overall"
-          href: current_overall.html
+          href: Current_overall.html
         - text: "Points"
-          href: current_points.html
+          href: Current_points.html
     - text: "Results"
       href: 
       menu:
