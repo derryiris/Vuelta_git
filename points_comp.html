@@ -11,7 +11,7 @@
 
 
 
-<title>Produce_Daily_Report.knit</title>
+<title>points_comp.knit</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -326,7 +326,118 @@ $(document).ready(function () {
 </div>
 
 
+<pre class="r"><code>library(data.table)
+library (tidyverse)</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ───────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.2     ✔ tibble    3.3.0
+## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+## ✔ purrr     1.1.0     
+## ── Conflicts ─────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()     masks data.table::between()
+## ✖ dplyr::filter()      masks stats::filter()
+## ✖ dplyr::first()       masks data.table::first()
+## ✖ lubridate::hour()    masks data.table::hour()
+## ✖ lubridate::isoweek() masks data.table::isoweek()
+## ✖ dplyr::lag()         masks stats::lag()
+## ✖ dplyr::last()        masks data.table::last()
+## ✖ lubridate::mday()    masks data.table::mday()
+## ✖ lubridate::minute()  masks data.table::minute()
+## ✖ lubridate::month()   masks data.table::month()
+## ✖ lubridate::quarter() masks data.table::quarter()
+## ✖ lubridate::second()  masks data.table::second()
+## ✖ purrr::transpose()   masks data.table::transpose()
+## ✖ lubridate::wday()    masks data.table::wday()
+## ✖ lubridate::week()    masks data.table::week()
+## ✖ lubridate::yday()    masks data.table::yday()
+## ✖ lubridate::year()    masks data.table::year()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>library(readxl)
+library(gridExtra)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;gridExtra&#39;
+## 
+## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     combine</code></pre>
+<pre class="r"><code>library(grid)
+library(gtable)</code></pre>
+<pre class="r"><code>route&lt;-fread(&quot;/Users/jonathanderry/Documents/Home/Cycling/Vuelta_2025/route.txt&quot;)
 
+
+date&lt;-Sys.Date()
+
+Stage&lt;-route %&gt;% dplyr::filter(Date==date) %&gt;% pull(Details) %&gt;% toupper()
+course&lt;-route %&gt;% dplyr::filter(Date==date) %&gt;% pull(Start.and.Finish) %&gt;% gsub(&quot;Vuelta 2024 route stage&quot;, &quot;&quot;, .) 
+
+results&lt;-fread(&quot;/Users/jonathanderry/Documents/Home/Cycling/Vuelta_2025/2025_Results/stage-9_combined_results_upto2025-08-31.txt&quot;)
+
+
+stages&lt;-unique(results$Stage_no)
+
+
+final&lt;-data.frame()
+
+
+for (i in 1:length(stages)){
+ 
+  stage&lt;-stages[i]
+  
+   temp&lt;-results %&gt;% as.data.frame() %&gt;% dplyr::filter(Stage_no == stages[i]) %&gt;%  dplyr::group_by(Team.x)  %&gt;% dplyr::arrange(total_seconds, Rank) %&gt;% slice_head(n=3) %&gt;% ungroup() %&gt;% dplyr::group_by(Team.x) %&gt;% summarise(Overall_Time=sum(total_seconds), top3_rank=mean(Rank))
+  
+  
+  
+  All_Rank=results %&gt;% as.data.frame() %&gt;% dplyr::filter(Stage_no == stages[i]) %&gt;%  dplyr::group_by(Team.x)  %&gt;% dplyr::arrange(total_seconds, Rank) %&gt;%  ungroup() %&gt;% dplyr::group_by(Team.x) %&gt;% summarise( all_rank=mean(Rank, na.rm=T))
+
+  
+  temp2&lt;-merge(temp, All_Rank, by=&quot;Team.x&quot;)  %&gt;% dplyr::arrange(Overall_Time, top3_rank, all_rank) %&gt;% mutate(Stage=stage, Position=c(&quot;1st&quot;, &quot;2nd&quot;, &quot;3rd&quot;, &quot;4th&quot;, &quot;5th&quot;, &quot;6th&quot;, &quot;7th&quot;, &quot;8th&quot;, &quot;9th&quot;, &quot;10th&quot;, &quot;11th&quot;, &quot;12th&quot;, &quot;13th&quot;, &quot;14th&quot;))
+  
+final&lt;-rbind(temp2, final)
+  
+}
+
+podiums&lt;-final %&gt;% dplyr::group_by(Position, Team.x) %&gt;% tally() %&gt;% dplyr::filter(Position %in% c(&quot;1st&quot;, &quot;2nd&quot;, &quot;3rd&quot;)) %&gt;% pivot_wider(names_from = &quot;Position&quot;, values_from = &quot;n&quot;, id_cols = &quot;Team.x&quot;)
+
+missing&lt;-data.frame(Team.x=setdiff(unique(final$Team.x), podiums$Team.x), `1st`=NA, `2nd`=NA, `3rd`=NA)
+colnames(missing)=colnames(podiums)
+
+podiums&lt;-rbind(podiums, missing)
+
+podiums[is.na(podiums)]&lt;-0
+
+podiums$Score&lt;-podiums$`1st`*10 + podiums$`2nd`*5 + podiums$`3rd`*2
+
+podiums&lt;-podiums %&gt;% dplyr::arrange(-Score) %&gt;% rename(Team=Team.x)
+
+
+
+cols &lt;- matrix(&quot;black&quot;, nrow(podiums), ncol(podiums))
+cols[1,1:ncol(podiums)] &lt;- c(&quot;seagreen&quot;)
+
+cols2&lt;-matrix(&quot;white&quot;, nrow(podiums), ncol(podiums))
+
+
+t &lt;- tableGrob(podiums, rows=NULL, theme = ttheme_default(colhead = list(fg_params = list(rot = 90,cex = 2)), core = list(fg_params = list(cex = 2,  col = cols, fontface=&quot;bold&quot; ), bg_params=list(fill=cols2)), padding = unit(c(10, 12), &quot;mm&quot;)))
+
+title&lt;-textGrob(paste( &quot;Points Competition Standings after &quot;, toupper(Stage),sep=&quot; &quot;), gp = gpar(fontsize = 20, fontface = &quot;bold&quot;))
+t &lt;- gtable_add_rows(t, heights = grobHeight(title) + unit(20, &quot;mm&quot;), pos = 0)
+
+t&lt;- gtable_add_grob(t, title, t = 1, l = 1, r = ncol(t))
+
+caption_text &lt;- textGrob(&quot;Points: 10 for 1st, 5 for 2nd, 2 for 3rd\n&quot;, 
+                         gp = gpar(fontsize = 20), 
+                         hjust = 1, x=0.95) # Adjust justification and position as needed
+
+
+t&lt;-grid.arrange(t, caption_text, 
+             ncol = 1, 
+             heights = unit.c(unit(1, &quot;npc&quot;) - grobHeight(caption_text), 
+                              grobHeight(caption_text)))</code></pre>
+<p><img src="points_comp_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>ggsave(paste(&quot;/Users/jonathanderry/Documents/Home/Cycling/Vuelta_2025/2025_Results/&quot;, Stage, &quot;_overall_points_table_after_&quot;,  Stage,&quot;_&quot;, Sys.Date(),&quot;.jpg&quot;, sep=&quot;&quot;),t, height=15, width=12, dpi=1000,  units=&quot;in&quot;, bg = &quot;white&quot;)
+
+ggsave(paste(&quot;/Users/jonathanderry/Documents/Home/Cycling/Vuelta_2025/2025_Results/current_points.jpg&quot;, sep=&quot;&quot;),t, height=15, width=12, dpi=1000,  units=&quot;in&quot;, bg = &quot;white&quot;)</code></pre>
 
 
 
