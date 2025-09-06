@@ -36,6 +36,8 @@ navbar:
           href: stage-11.html
         - text: "Stage 12"
           href: stage-12.html
+        - text: "Stage 13"
+          href: stage-13.html
     - text: "Standings"
       href:
       menu:
