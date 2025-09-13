@@ -50,6 +50,8 @@ navbar:
           href: stage-18.html
         - text: "Stage 19"
           href: stage-19.html
+        - text: "Stage 20"
+          href: stage-20.html
     - text: "Standings"
       href:
       menu:
